@@ -1,0 +1,1012 @@
+/* General Body and Base Theme Variables */
+:root {
+    /* Light Theme Defaults */
+    --bg-light: #f4f7f6;
+    --text-light: #333333;
+    --card-bg-light: #ffffff;
+    --input-bg-light: #ffffff;
+    --border-light: #e0e0e0;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --hover-bg-light: #f0f0f0;
+
+    /* Dark Theme Defaults */
+    --bg-dark: #1a1a2e;
+    --text-dark: #e0e0e0;
+    --card-bg-dark: #16213e;
+    --input-bg-dark: #0f1521;
+    --border-dark: #3a3a4e;
+    --shadow-dark: rgba(0, 0, 0, 0.4);
+    --hover-bg-dark: #222e4d;
+
+    /* Common */
+    --primary-color: #61dafb; /* React blue */
+    --secondary-color: #bb86fc; /* A complementary purple */
+    --success-color: #4caf50;
+    --danger-color: #f44336;
+    --warning-color: #ffc107;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Theme Application */
+body.light {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    --bg: var(--bg-light);
+    --text: var(--text-light);
+    --card-bg: var(--card-bg-light);
+    --input-bg: var(--input-bg-light);
+    --border: var(--border-light);
+    --shadow: var(--shadow-light);
+    --hover-bg: var(--hover-bg-light);
+}
+
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+    --bg: var(--bg-dark);
+    --text: var(--text-dark);
+    --card-bg: var(--card-bg-dark);
+    --input-bg: var(--input-bg-dark);
+    --border: var(--border-dark);
+    --shadow: var(--shadow-dark);
+    --hover-bg: var(--hover-bg-dark);
+}
+
+/* Global Styles for inputs, buttons, etc. */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="time"],
+input[type="number"],
+textarea,
+select {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text);
+    background-color: var(--input-bg);
+    width: 100%; /* Ensure forms inputs take full width of their container */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    transition: all 0.2s ease-in-out;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.3);
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-1px);
+    color: #fff;
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background-color: var(--border);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Auth Pages (Login/Register) */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--bg);
+    transition: background-color 0.3s ease;
+}
+
+.auth-form {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-form h2 {
+    color: var(--text);
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.auth-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.auth-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text);
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.auth-form input[type="text"],
+.auth-form input[type="email"],
+.auth-form input[type="password"] {
+    width: calc(100% - 24px); /* Account for padding */
+    padding: 12px;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+}
+
+.auth-form p {
+    margin-top: 20px;
+    color: var(--text);
+}
+
+.auth-form a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-form a:hover {
+    text-decoration: underline;
+}
+
+/* App Layout */
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.App-header {
+    background-color: var(--card-bg);
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px var(--shadow);
+    z-index: 100;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 15px; /* Space between header elements */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-title {
+    margin: 0;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-dnd-button, .theme-toggle-button, .logout-button {
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.toggle-dnd-button:hover, .theme-toggle-button:hover, .logout-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.filter-search-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    flex-grow: 1; /* Allows it to take available space */
+    justify-content: center; /* Center filters if space allows */
+}
+
+.search-input {
+    flex-grow: 1;
+    min-width: 150px;
+    max-width: 300px;
+}
+
+.filter-select, .tag-filter-input {
+    min-width: 120px;
+}
+
+.todo-layout {
+    display: flex;
+    flex-grow: 1;
+}
+
+.sidebar {
+    width: 250px; /* Fixed width sidebar */
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 8px var(--shadow);
+    z-index: 50;
+}
+
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-left: 5px solid transparent;
+}
+
+.sidebar-button:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+}
+
+.sidebar-button.active {
+    background-color: var(--hover-bg);
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 25px;
+    overflow-y: auto; /* Enable scrolling for main content if it overflows */
+    background-color: var(--bg);
+}
+
+/* Add Todo Form */
+.add-todo-form {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow);
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: flex-end; /* Align items to the bottom if varying heights */
+}
+
+.add-todo-form input,
+.add-todo-form select,
+.add-todo-form textarea {
+    flex: 1 1 calc(33% - 15px); /* Three columns, adjust as needed */
+    min-width: 150px; /* Minimum width before wrapping */
+}
+
+.add-todo-form textarea {
+    flex-basis: 100%; /* Description takes full width */
+    min-height: 50px; /* Give some initial height */
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.add-todo-form .react-datepicker-wrapper {
+    flex: 1 1 calc(33% - 15px);
+    min-width: 150px;
+}
+
+.add-todo-form .react-datepicker__input-container input {
+    width: 100%;
+}
+
+.add-todo-form button {
+    flex: 1 1 auto; /* Allow button to grow/shrink */
+    min-width: 120px;
+    background-color: var(--success-color); /* Green for add */
+    color: white;
+}
+
+.add-todo-form button:hover {
+    background-color: #43a047;
+}
+
+
+/* Todo List */
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    background-color: var(--card-bg);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border); /* Subtle border */
+}
+
+.todo-item.completed {
+    opacity: 0.7;
+    border-left: 5px solid var(--success-color);
+}
+
+.todo-item.editing {
+    border-left: 5px solid var(--primary-color);
+}
+
+.todo-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.main-task-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.main-task-checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0; /* Override default margin */
+    flex-shrink: 0;
+    accent-color: var(--primary-color); /* Style checkbox */
+}
+
+.main-task-checkbox input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.todo-text {
+    flex-grow: 1;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    user-select: none; /* Prevent text selection on click */
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.priority-display {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-left: auto; /* Pushes to the right */
+}
+
+.priority-display[style*="#4CAF50"] { background-color: var(--success-color); } /* Low */
+.priority-display[style*="#FFC107"] { background-color: var(--warning-color); } /* Medium */
+.priority-display[style*="#F44336"] { background-color: var(--danger-color); } /* High */
+.priority-display[style*="#9E9E9E"] { background-color: #9e9e9e; } /* None */
+
+
+.date-display,
+.reminder-display {
+    font-size: 0.9em;
+    color: var(--text);
+    opacity: 0.8;
+}
+
+.tags-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag-item {
+    background-color: var(--primary-color);
+    color: #000;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.description-preview span {
+    font-size: 0.9em;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.description-full {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 0.9em;
+    line-height: 1.5;
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    overflow-wrap: break-word; /* Break long words */
+}
+
+.description-full strong {
+    font-weight: bold;
+    color: var(--text); /* Ensure bold text is visible in both themes */
+}
+
+.description-full em {
+    font-style: italic;
+}
+
+.recurrence-display {
+    font-size: 0.9em;
+    color: var(--text);
+    opacity: 0.8;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: flex-end;
+}
+
+.todo-actions button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+    background-color: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.todo-actions button:hover {
+    background-color: var(--hover-bg);
+}
+
+.todo-actions .edit-button {
+    background-color: var(--primary-color);
+    color: #000;
+}
+.todo-actions .edit-button:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+.todo-actions .delete-button {
+    background-color: var(--danger-color);
+    color: white;
+}
+.todo-actions .delete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Edit Form */
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    border: 1px dashed var(--primary-color);
+    border-radius: 8px;
+    background-color: var(--hover-bg);
+}
+
+.edit-form input,
+.edit-form textarea,
+.edit-form select {
+    width: 100%;
+}
+
+.edit-form button {
+    align-self: flex-end; /* Align buttons to the right */
+    width: auto; /* Buttons adjust to content */
+    padding: 8px 15px;
+}
+
+/* Subtasks */
+.todo-item h4 {
+    font-size: 0.95em;
+    color: var(--text);
+    opacity: 0.9;
+    margin: 10px 0 5px 0;
+}
+
+.todo-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item ul li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9em;
+    color: var(--text);
+    margin-bottom: 5px;
+}
+
+.todo-item ul li input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.todo-item ul li span {
+    flex-grow: 1;
+}
+
+.todo-item ul li span[style*="line-through"] {
+    color: #888;
+}
+
+/* Loading Spinner */
+.loading-spinner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Ensure it's visible even with no content */
+    gap: 15px;
+    color: var(--text);
+    opacity: 0.8;
+}
+
+.loading-spinner {
+    border: 6px solid var(--border);
+    border-top: 6px solid var(--primary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Empty State Message */
+.empty-state-message {
+    text-align: center;
+    color: var(--text);
+    opacity: 0.7;
+    margin-top: 50px;
+    font-size: 1.1em;
+}
+
+/* List Headers (for grouped lists) */
+.list-header {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 8px;
+}
+
+/* React Datepicker overrides for theme */
+.react-datepicker__header {
+    background-color: var(--primary-color);
+    color: #000; /* Text on header should be dark */
+    border-bottom: 1px solid var(--primary-color);
+}
+
+.react-datepicker__header button {
+    color: #000; /* Dark text for navigation buttons */
+}
+
+.react-datepicker__month-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+    color: var(--text);
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+.react-datepicker__day--outside-month {
+    color: #aaa !important;
+}
+
+/* New Page Content Styles */
+.page-content {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow);
+    max-width: 800px; /* Constrain width for readability */
+    margin: 20px auto; /* Center the content */
+    line-height: 1.8;
+}
+
+.page-content h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.page-content h3 {
+    color: var(--text);
+    font-size: 1.5rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.page-content p,
+.page-content li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text);
+}
+
+.page-content ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.page-content strong {
+    font-weight: bold;
+    color: var(--primary-color); /* Highlight key terms */
+}
+
+/* How to Use Specific Styles */
+.how-to-use h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.how-to-use h2 {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 8px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.how-to-use h3 {
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.how-to-use ul {
+    list-style: disc;
+    padding-left: 25px;
+}
+
+.how-to-use li {
+    margin-bottom: 8px;
+}
+
+.how-to-use code {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+}
+
+/* Feedback Form Specific Styles */
+.feedback-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feedback-form .form-group {
+    margin-bottom: 0; /* Override default form-group margin for cleaner form layout */
+}
+
+.feedback-form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text);
+    display: block;
+}
+
+.feedback-form input[type="text"],
+.feedback-form input[type="email"],
+.feedback-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.feedback-form button {
+    align-self: flex-start; /* Align button to the left */
+    margin-top: 15px;
+    background-color: var(--primary-color);
+    color: #000;
+}
+
+.feedback-form button:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .App-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .filter-search-section {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .header-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    .todo-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row; /* Horizontal navigation on small screens */
+        justify-content: space-around;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 10px 0;
+        box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .sidebar-button {
+        padding: 10px;
+        flex-grow: 1; /* Distribute space evenly */
+        justify-content: center; /* Center icon and text */
+        border-left: none;
+        border-bottom: 5px solid transparent;
+    }
+
+    .sidebar-button.active {
+        border-left-color: transparent; /* Reset left border */
+        border-bottom-color: var(--primary-color);
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .add-todo-form {
+        flex-direction: column;
+    }
+
+    .add-todo-form input,
+    .add-todo-form select,
+    .add-todo-form textarea,
+    .add-todo-form .react-datepicker-wrapper {
+        flex: 1 1 100%; /* Stack all inputs */
+        min-width: unset;
+    }
+
+    .todo-item {
+        padding: 12px 15px;
+    }
+
+    .todo-actions {
+        flex-direction: column;
+        align-items: stretch; /* Stretch buttons to full width */
+    }
+
+    .todo-actions button {
+        width: 100%;
+    }
+
+    .page-content {
+        margin: 15px auto;
+        padding: 20px;
+    }
+
+    .how-to-use h1 {
+        font-size: 2rem;
+    }
+    .how-to-use h2 {
+        font-size: 1.5rem;
+    }
+    .how-to-use h3 {
+        font-size: 1.2rem;
+    }
+    .page-content p,
+    .page-content li {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .App-header {
+        padding: 10px 15px;
+    }
+    .app-title {
+        font-size: 1.8rem;
+    }
+    .auth-form {
+        padding: 20px;
+        margin: 15px;
+    }
+}
+
+.profile-page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.profile-card p {
+  font-size: 1.1em;
+  margin: 10px 0;
+}
+.profile-card h2 {
+  font-size: 1.5em;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+}
+
+
+/* === Responsive Enhancements (Additional) === */
+
+@media (max-width: 768px) {
+    .auth-form {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .App-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .profile-page {
+        padding: 15px;
+    }
+
+    .profile-card p,
+    .profile-card h2 {
+        font-size: 1rem;
+    }
+
+    .page-content {
+        padding: 20px;
+    }
+
+    .how-to-use h1 {
+        font-size: 2rem;
+    }
+    .how-to-use h2 {
+        font-size: 1.5rem;
+    }
+    .how-to-use h3 {
+        font-size: 1.2rem;
+    }
+    .page-content p,
+    .page-content li {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card p,
+    .profile-card h2 {
+        font-size: 0.95rem;
+        text-align: center;
+    }
+
+    .auth-form {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    .App-header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .app-title {
+        font-size: 1.5rem;
+    }
+
+    .header-left, .header-right {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .add-todo-form button {
+        width: 100%;
+    }
+}

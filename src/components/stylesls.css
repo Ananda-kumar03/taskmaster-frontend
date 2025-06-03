@@ -1,0 +1,477 @@
+
+
+:root {
+    
+    /* --background-color-light: #f4f7f6;
+    --text-color-light: #333;
+    --card-background-light: #fff;
+    --border-color-light: #ddd;
+    --input-background-light: #f9f9f9; */
+    --button-background-light: #61dafb;
+    --button-text-light: #fff;
+    --link-color-light: #007bff;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
+/* Dark Mode Colors */
+.dark-mode {
+    --background-color-dark: #282c34; /* Deep desaturated blue/grey (main background) */
+    --text-color-dark: #f0f0f0;      /* Default text color for the page body in dark mode */
+    --card-background-dark: #e2e8f0; /* **SIGNIFICANTLY LIGHTER** background for the card in dark mode */
+    --card-text-dark: #1a202c;       /* **NEW**: Dark text color specifically for elements INSIDE the light dark-mode card */
+    --border-color-dark: #555;       /* Default dark border, can be overridden */
+    --input-background-dark: #fff;   /* White input background for contrast on light card */
+    --button-background-dark: #61dafb;
+    --button-text-dark: #282c34;
+    --link-color-dark: #007bff;      /* Dark link color for contrast on light card */
+    --error-color-dark: #dc3545;     /* Ensure error colors remain visible */
+    --success-color-dark: #28a745;   /* Ensure success colors remain visible */
+}
+
+/* Base styles - apply to both modes by default */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* REMOVED centering styles from body */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--background-color-light); /* Default to light mode */
+    color: var(--text-color-light); /* Default to light mode */
+}
+
+/* Dark mode specific styles */
+.dark-mode body {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Container for Login and Register components */
+/* Container for Login and Register components */
+.Login, .Register {
+    background-color: var(--card-background-light); /* Default to light */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light mode shadow */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color-light); /* Adding border for clear separation */
+}
+
+.dark-mode .Login, .dark-mode .Register {
+    background-color: var(--card-background-dark); /* Updated for better contrast */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 7.5); /* Stronger shadow in dark mode */
+    border: 1px solid rgba(97, 218, 251, 2.5); /* Subtle accent border in dark mode */
+}
+
+.dark-mode .Login h2,
+.dark-mode .Register h2,
+.dark-mode .Login label,
+.dark-mode .Register label,
+.dark-mode .Login p,
+.dark-mode .Register p {
+    color: var(--card-text-dark); /* Dark text for the light card */
+}
+
+h2 {
+    color: var(--text-color-light); /* Default to light */
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.dark-mode h2 {
+    color: var(--text-color-dark);
+}
+
+form div {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color-light); /* Default to light */
+}
+
+.dark-mode label {
+    color: var(--text-color-dark);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid var(--border-color-light); /* Default to light */
+    border-radius: 5px;
+    background-color: var(--input-background-light); /* Default to light */
+    color: var(--text-color-light); /* Default to light */
+    font-size: 1em;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="password"] {
+    border: 1px solid #333; /* A dark grey border for visibility on white input */
+    background-color: var(--input-background-dark); /* This is set to #fff */
+    color: var(--card-text-dark); /* This is set to #1a202c */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--button-background-light); /* Use a consistent accent color */
+    box-shadow: 0 0 0 2px rgba(97, 218, 251, 0.2);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--button-background-light);
+    color: var(--button-text-light);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.dark-mode button[type="submit"] {
+    background-color: var(--button-background-dark);
+    color: var(--button-text-dark);
+}
+
+button[type="submit"]:hover {
+    background-color: #4ac1e7; /* Slightly darker/lighter for hover */
+    transform: translateY(-1px);
+}
+
+/* NEW CLASS for centering authentication pages */
+.auth-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Takes full viewport height */
+    width: 100vw; /* Takes full viewport width */
+    box-sizing: border-box;
+    /* Add background/color if you want it to be specific to this container */
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .auth-page-container {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+.Login, .Register {
+    background-color: var(--card-background-light); /* Default to light */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .Login, .dark-mode .Register {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    background-color: #3aa6d2;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: var(--text-color-light); /* Default to light */
+}
+
+.dark-mode p {
+    color: var(--text-color-dark);
+}
+
+p.error {
+    color: var(--error-color);
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+p.success {
+    color: var(--success-color);
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+a {
+    color: var(--link-color-light);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.dark-mode a {
+    color: var(--link-color-dark);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+
+:root {
+    --button-background-light: #61dafb;
+    --button-text-light: #fff;
+    --link-color-light: #007bff;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+}
+
+/* Dark Mode Colors */
+.dark-mode {
+    --background-color-dark: #282c34;
+    --text-color-dark: #f0f0f0;
+    --card-background-dark: #e2e8f0;
+    --card-text-dark: #1a202c;
+    --border-color-dark: #555;
+    --input-background-dark: #fff;
+    --button-background-dark: #61dafb;
+    --button-text-dark: #282c34;
+    --link-color-dark: #007bff;
+    --error-color-dark: #dc3545;
+    --success-color-dark: #28a745;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode body {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Centering container */
+.auth-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 1rem;
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode .auth-page-container {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+.Login, .Register {
+    background-color: var(--card-background-light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .Login, .dark-mode .Register {
+    background-color: var(--card-background-dark);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(97, 218, 251, 0.2);
+}
+
+h2 {
+    color: var(--text-color-light);
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.dark-mode h2 {
+    color: var(--text-color-dark);
+}
+
+form div {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-color-light);
+}
+
+.dark-mode label {
+    color: var(--text-color-dark);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color-light);
+    border-radius: 5px;
+    background-color: var(--input-background-light);
+    color: var(--text-color-light);
+    font-size: 1em;
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="password"] {
+    border: 1px solid #333;
+    background-color: var(--input-background-dark);
+    color: var(--card-text-dark);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--button-background-light);
+    box-shadow: 0 0 0 2px rgba(97, 218, 251, 0.2);
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--button-background-light);
+    color: var(--button-text-light);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.dark-mode button[type="submit"] {
+    background-color: var(--button-background-dark);
+    color: var(--button-text-dark);
+}
+
+button[type="submit"]:hover {
+    background-color: #4ac1e7;
+    transform: translateY(-1px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+    background-color: #3aa6d2;
+}
+
+p {
+    margin-top: 20px;
+    font-size: 0.95em;
+    color: var(--text-color-light);
+}
+
+.dark-mode p {
+    color: var(--text-color-dark);
+}
+
+p.error {
+    color: var(--error-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+p.success {
+    color: var(--success-color);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+a {
+    color: var(--link-color-light);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.dark-mode a {
+    color: var(--link-color-dark);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ===============================
+   ✅ RESPONSIVE DESIGN UPDATES
+   =============================== */
+@media (max-width: 768px) {
+    .Login, .Register {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        font-size: 0.95rem;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .auth-page-container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .Login, .Register {
+        padding: 16px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    button[type="submit"] {
+        font-size: 0.95rem;
+    }
+
+    p,
+    label {
+        font-size: 0.85rem;
+    }
+}
+
+ 
