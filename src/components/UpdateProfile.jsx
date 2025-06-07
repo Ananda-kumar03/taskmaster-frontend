@@ -14,7 +14,7 @@ const UpdateProfile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    axios.get('http://localhost:5000/api/users/profile', {
+    axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => setFormData(res.data))
