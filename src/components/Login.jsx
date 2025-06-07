@@ -18,7 +18,7 @@ function Login({ login }) {
         e.preventDefault();
         setError('');
         try {
-            const response = await axios.post('http://localhost:5000/api/auth/login', { identifier, password });
+            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/login`, { identifier, password });
             login(response.data.token, response.data.userId);
             navigate(from, { replace: true });
             toast.success('🔓 Logged in successfully!', {

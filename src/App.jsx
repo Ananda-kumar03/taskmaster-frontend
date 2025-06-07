@@ -625,7 +625,7 @@ function App() {
             setToken(storedToken);
             setUserId(storedUserId);
 
-             axios.get('http://localhost:5000/api/users/profile', {
+             axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/profile`, {
             headers: { Authorization: `Bearer ${storedToken}` }
         })
         .then(res => setUser(res.data))
@@ -643,7 +643,7 @@ function App() {
         localStorage.setItem('userId', userId);
 
         try {
-            const res = await axios.get('http://localhost:5000/api/users/profile', {
+            const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/users/profile`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUser(res.data);
@@ -1093,12 +1093,12 @@ const formatTime = (min, sec) => {
         const token = localStorage.getItem('token'); // Ensure 'token' is accessible here
         if (!token) return;
 
-        let url = 'http://localhost:5000/api/todos';
+        let url = `${import.meta.env.VITE_API_BASE_URL}/api/todos`;
         // 🚨 CHANGE THIS LINE: Initialize params as a URLSearchParams object
         const params = new URLSearchParams(); 
         
         if (mode === 'my-day') {
-            url = 'http://localhost:5000/api/todos/today';
+            url = `${import.meta.env.VITE_API_BASE_URL}/api/todos/today`;
         } else {
             if (currentSearchQuery) {
                 params.append('search', currentSearchQuery); // Use append
@@ -1204,7 +1204,7 @@ useEffect(() => {
     const updateTodoOrder = async (newOrderIds) => {
         try {
             await axios.put(
-                'http://localhost:5000/api/todos/reorder',
+                `${import.meta.env.VITE_API_BASE_URL}/api/todos/reorder`,
                 { order: newOrderIds },
                 {
                     headers: { Authorization: `Bearer ${token}` },
@@ -1238,7 +1238,7 @@ const isDragAndDropEnabled = useMemo(() => {
                  setTodos(prevTodos => [...prevTodos, response.data]);
             }
             const res = await axios.post(
-                'http://localhost:5000/api/todos',
+                `${import.meta.env.VITE_API_BASE_URL}/api/todos`,
                 {
                     text,
                     completed: false,
@@ -1282,7 +1282,7 @@ const isDragAndDropEnabled = useMemo(() => {
         const confirmed = window.confirm('🗑️ Are you sure you want to delete this task?');
   if (!confirmed) return;
         try {
-            await axios.delete(`http://localhost:5000/api/todos/${id}`, {
+            await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/todos/${id}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
              toast.success('Task deleted successfully!', {
@@ -1407,7 +1407,7 @@ const startEdit = (todo) => {
                 // No need to explicitly set to true here; the main checkbox click will handle it.
 
                 await axios.put(
-                    `http://localhost:5000/api/todos/${todoId}`,
+                    `${import.meta.env.VITE_API_BASE_URL}/api/todos/${todoId}`,
                     { subtasks: updatedSubtasks, completed: newMainTodoCompletedStatus },
                     {
                         headers: { Authorization: `Bearer ${token}` },
@@ -1430,7 +1430,7 @@ const startEdit = (todo) => {
 
             const updatedTodo = { ...todoToUpdate, isArchived: archiveStatus };
 
-            await axios.put(`http://localhost:5000/api/todos/${id}`, updatedTodo, {
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/todos/${id}`, updatedTodo, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -1452,7 +1452,7 @@ const startEdit = (todo) => {
 
     const togglePin = async (id, currentPinStatus) => {
   try {
-    await axios.put(`http://localhost:5000/api/todos/${id}`, { pinned: !currentPinStatus }, {
+    await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/todos/${id}`, { pinned: !currentPinStatus }, {
   headers: { Authorization: `Bearer ${token}` }
 });
 
@@ -1488,7 +1488,7 @@ const startEdit = (todo) => {
         console.log('--- Payload being sent to backend:', JSON.stringify(payload, null, 2)); // <--- ADD THIS LINE
 
         await axios.put(
-            `http://localhost:5000/api/todos/${editingId}`,
+            `${import.meta.env.VITE_API_BASE_URL}/api/todos/${editingId}`,
             payload, // Use the prepared payload
             {
                 headers: { Authorization: `Bearer ${token}` },
@@ -1516,7 +1516,7 @@ const startEdit = (todo) => {
     const toggleComplete = async (todo) => {
         try {
             await axios.put(
-                `http://localhost:5000/api/todos/${todo._id}/complete`,
+                `${import.meta.env.VITE_API_BASE_URL}/api/todos/${todo._id}/complete`,
                 {},
                 {
                     headers: { Authorization: `Bearer ${token}` },
@@ -1549,7 +1549,7 @@ const startEdit = (todo) => {
         // Ensure this is the correct endpoint for clearing ALL completed todos
         // It should NOT include any ID in the URL like /api/todos/completed/someId
         // It should also be a DELETE request.
-        await axios.delete('http://localhost:5000/api/todos/completed', {
+        await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/api/todos/completed`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         console.log("Successfully sent request to clear completed todos."); // Add this for debugging

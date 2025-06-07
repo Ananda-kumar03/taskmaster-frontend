@@ -10,7 +10,7 @@ const Reflection = () => {
     const fetchSummary = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/stats/reflection-summary', {
+        const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/stats/reflection-summary`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setSummary(res.data);

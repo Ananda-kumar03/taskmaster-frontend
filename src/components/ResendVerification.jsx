@@ -10,7 +10,7 @@ const ResendVerification = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/resend-verification', { email });
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/auth/resend-verification`, { email });
       toast.success('📨 Verification link resent to your email');
     } catch (err) {
       toast.error(err.response?.data?.message || '❌ Could not resend link');

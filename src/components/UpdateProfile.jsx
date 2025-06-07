@@ -30,7 +30,7 @@ const UpdateProfile = () => {
     e.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      await axios.put('http://localhost:5000/api/users/profile', formData, {
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/users/profile`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.success('✅ Profile updated successfully!');
